@@ -9,3 +9,17 @@
 .release:hover .descrip {
   @apply block;
 }
+
+@layer base {
+  img {
+    width: auto;
+    max-width: auto;
+    aspect-ratio: auto;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 0 20px #000000;
+  }
+}

@@ -11,12 +11,12 @@ const Header: React.FC = () => {
         </Link>
       </h1>
       <nav className={`${poppins.className} flex gap-10 font-extralight`}>
-        <Link href='/'>Home</Link>
-        <a href='/buy/streaming'>Streaming/Buy</a>
-        <a href='/coming_soon'>Coming Soon</a>
-        <a href='/catalog'>Catalog</a>
-        <a href='/about'>About</a>
-        <a href='/contact'>Contact</a>
+        <Link href='/' className='hover:text-orange-600'>Home</Link>
+        <a href='/buy/streaming' className='hover:text-orange-600'>Streaming/Buy</a>
+        <a href='/coming_soon' className='hover:text-orange-600'>Coming Soon</a>
+        <a href='/catalog' className='hover:text-orange-600'>Catalog</a>
+        <a href='/about' className='hover:text-orange-600'>About</a>
+        <a href='/contact' className='hover:text-orange-600'>Contact</a>
       </nav>
     </header>
   )

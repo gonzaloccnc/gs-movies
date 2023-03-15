@@ -10,19 +10,20 @@ interface ReleasesProps {
 
 const Release: React.FC<ReleasesProps> = ({ title, image, overview }) => {
   return (
-    <div className='w-64 h-96 shrink-0 relative release'>
+    <div className='w-[285px] h-full shrink-0 relative release'>
       <Image
         unoptimized
-        width={256}
-        height={384}
+        width={285}
+        height={428}
         src={API_URL.IMAGES_W + image}
         alt={title}
+        priority
       />
       <div
-        className='w-full h-full absolute top-0 bg-gs_black flex
+        className='w-full h-full absolute top-0 bottom-0 bg-gs_black flex
         text-xs font-poppins font-extralight descrip'
       >
-        <div className='px-3 absolute top-1/2'>
+        <div className='px-3 absolute top-[60%]'>
           <h1 className='mb-3 font-bold'>{title}</h1>
           <p>{overview}</p>
         </div>
