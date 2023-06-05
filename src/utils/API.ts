@@ -1,7 +1,25 @@
 export const API_URL = {
-  IMAGES_W: 'https://image.tmdb.org/t/p/w500/',
+  IMAGES_W: 'https://image.tmdb.org/t/p/w500',
   IMAGES: 'https://image.tmdb.org/t/p/original',
   MOVIES: 'https://api.themoviedb.org/3/movie/'
+}
+
+export interface MoviePlay {
+  iso_639_1: string
+  iso_3166_1: string
+  name: string
+  key: string
+  site: string
+  size: number
+  type: string
+  official: boolean
+  published_at: string
+  id: string
+}
+
+export interface MoviePlayJSON {
+  id: number
+  results: MoviePlay[]
 }
 
 export interface MovieType {

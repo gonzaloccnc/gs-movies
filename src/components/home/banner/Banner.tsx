@@ -20,8 +20,8 @@ const Banner: React.FC<BannerProps> = ({ movieData }) => {
         className='w-full h-full'
       />
       <div className='absolute top-[40%] left-32 border-l border-white pl-10'>
-        <h1 className='font-extralight font-poppins'>It is now Avaliable</h1>
-        <p className='text-7xl font-bolds'>{movieData.title}</p>
+        <h1 className='font-extralight font-poppins text-shadow'>It is now Avaliable</h1>
+        <p className='text-7xl font-bolds text-shadow'>{movieData.title}</p>
         <p className='font-extralight font-poppins my-8 w-1/2 text-shadow'>{movieData.overview}</p>
         <ButtonPrimary title='Streaming/Buy' />
       </div>

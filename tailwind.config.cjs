@@ -14,7 +14,11 @@ module.exports = {
         gs_dark: '#0f0f0f',
         gs_gray: '#a0a0a0',
         gs_black: 'rgba(0, 0, 0, 0.8)'
+      },
+      transitionTimingFunction: {
+        slide: 'cubic-bezier(.46,-0.29,0,1.32)'
       }
+
     }
   },
   plugins: []

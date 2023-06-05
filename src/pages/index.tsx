@@ -16,7 +16,7 @@ const HomePage: React.FC<HomePageProps> = ({ data }) => {
     <>
       <Head>
         <title>GS - Movies</title>
-        <meta name='description' content='Movies and trailers' />
+        <meta name='description' content='Movies and trailers of last releases in the world' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -48,4 +48,5 @@ const getServerSideProps = async (): Promise<{ props: HomePageProps }> => {
 export {
   getServerSideProps
 }
+
 export default HomePage

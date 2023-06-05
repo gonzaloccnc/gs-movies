@@ -1,16 +1,27 @@
 import { API_URL } from '@/utils/API'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 interface ReleasesProps {
   title: string
   image: string
   overview: string
+  id: number
 }
 
-const Release: React.FC<ReleasesProps> = ({ title, image, overview }) => {
+const Release: React.FC<ReleasesProps> = ({ title, image, overview, id }) => {
+  const router = useRouter()
+
+  const handleNavigate = (): void => {
+    void router.push(`/release/${id}`)
+  }
+
   return (
-    <div className='w-[285px] h-full shrink-0 relative release'>
+    <div
+      className='w-[285px] h-full shrink-0 relative release cursor-pointer'
+      onClick={handleNavigate}
+    >
       <Image
         unoptimized
         width={285}

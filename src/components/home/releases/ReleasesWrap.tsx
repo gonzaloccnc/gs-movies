@@ -1,6 +1,6 @@
 import { type MovieType } from '@/utils/API'
 import Link from 'next/link'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Release } from './Release'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 
@@ -8,25 +8,31 @@ interface ReleasesWrapProps {
   releases: MovieType[]
 }
 
-// interface SliderState {
-//   first: boolean
-//   mainMargin: '-26%'
-//   commonMargin: '-15%'
-// }
-
 const ReleasesWrap: React.FC<ReleasesWrapProps> = ({ releases }) => {
-  // const [sliderState, setSliderState] = useState<SliderState>({
-  //   first: true,
-  //   mainMargin: '-26%',
-  //   commonMargin: '-15%'
-  // })
+  const [click, setClicks] = useState<number>(0)
   const onlyPreviews = [...releases].slice(0, 8)
   const slider = useRef<HTMLDivElement>(null)
 
   const hadnleNextImage = (): void => {
+    setClicks(click + 1)
     if (slider.current !== null) {
       const sl = slider.current
-      sl.style.marginLeft = '-25%'
+      const gap = getComputedStyle(sl).columnGap.replace('px', '')
+      const marginLeft = sl.firstElementChild?.clientWidth ?? 0
+      const sum = click + 1
+      sl.style.marginLeft = `-${(marginLeft + parseInt(gap)) * sum}px`
+    }
+  }
+
+  const handePrevImage = (): void => {
+    setClicks(click - 1)
+    console.log(click)
+    if (slider.current !== null) {
+      const sl = slider.current
+      const gap = getComputedStyle(sl).columnGap.replace('px', '')
+      const marginLeft = sl.firstElementChild?.clientWidth ?? 0
+      const rest = click - 1
+      sl.style.marginLeft = `-${(marginLeft + parseInt(gap)) * rest}px`
     }
   }
 
@@ -38,13 +44,20 @@ const ReleasesWrap: React.FC<ReleasesWrapProps> = ({ releases }) => {
         <Link href='/catalog' className='text-gs_orange'>See all</Link>
       </div>
       <div id='slider_releases' className='w-full h-[428px] overflow-hidden relative'>
-        <AiOutlineLeft
-          fontSize={45}
-          fill='#ffffff'
-          className='absolute top-1/2 -translate-y-1/2 left-2 z-50 cursor-pointer'
-          onClick={hadnleNextImage}
-        />
-        <div className='w-[200%] h-full flex gap-10' ref={slider}>
+        {
+          click !== 0
+            ? <AiOutlineLeft
+              fontSize={45}
+              fill='#ffffff'
+              className='absolute top-1/2 -translate-y-1/2 left-2 z-50 cursor-pointer'
+              onClick={handePrevImage}
+            />
+            : null
+        }
+        <div
+          className='w-[200%] h-full flex gap-10 transition-all ease-slide duration-500'
+          ref={slider}
+        >
           {
             onlyPreviews.map(rls => (
               <Release
@@ -52,16 +65,21 @@ const ReleasesWrap: React.FC<ReleasesWrapProps> = ({ releases }) => {
                 title={rls.title}
                 image={rls.poster_path}
                 overview={rls.overview}
+                id={rls.id}
               />
             ))
           }
         </div>
-        <AiOutlineRight
-          fontSize={45}
-          fill='#ffffff'
-          className='absolute top-1/2 -translate-y-1/2 right-2 z-50 cursor-pointer'
-          onClick={hadnleNextImage}
-        />
+        {
+          click !== 4
+            ? <AiOutlineRight
+              fontSize={45}
+              fill='#ffffff'
+              className='absolute top-1/2 -translate-y-1/2 right-2 z-50 cursor-pointer'
+              onClick={hadnleNextImage}
+            />
+            : null
+        }
       </div>
     </section>
   )

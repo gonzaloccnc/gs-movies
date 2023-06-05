@@ -7,6 +7,7 @@ const Document: React.FC = () => {
       <Head />
       <body>
         <Main />
+        <main id='portal_root'></main>
         <NextScript />
       </body>
     </Html>
