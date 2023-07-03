@@ -33,7 +33,6 @@ const NextReleases: React.FC = () => {
         {
           upcoming !== null
             ? <Image
-              unoptimized
               src={API_URL.IMAGES + upcoming.results[0].backdrop_path}
               fill
               alt={upcoming.results[0].title}
@@ -56,13 +55,13 @@ const NextReleases: React.FC = () => {
       </section>
       {
         openModal
-          ? <Modal>
+          ? (<Modal>
             <ContentModalReleases
               closeModal={handleOpenWithDefaultVideo}
               defaultMovie={upcoming?.results[0] as MovieType}
               movies={upcoming?.results as MovieType[]}
             />
-          </Modal>
+          </Modal>)
           : null
       }
     </>

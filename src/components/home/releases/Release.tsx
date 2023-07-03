@@ -19,22 +19,21 @@ const Release: React.FC<ReleasesProps> = ({ title, image, overview, id }) => {
 
   return (
     <div
-      className='w-[285px] h-full shrink-0 relative release cursor-pointer'
+      className='w-[285px] h-full shrink-0 relative cursor-pointer'
       onClick={handleNavigate}
     >
       <Image
-        unoptimized
-        width={285}
-        height={428}
+        fill
         src={API_URL.IMAGES_W + image}
         alt={title}
         priority
       />
       <div
-        className='w-full h-full absolute top-0 bottom-0 bg-gs_black flex
-        text-xs font-poppins font-extralight descrip'
+        className='w-full h-full absolute top-0 bg-gs_black flex
+        text-xs font-poppins font-extralight opacity-0 hover:opacity-100 transition-all
+        duration-300'
       >
-        <div className='px-3 absolute top-[60%]'>
+        <div className='px-3 absolute bottom-5'>
           <h1 className='mb-3 font-bold'>{title}</h1>
           <p>{overview}</p>
         </div>

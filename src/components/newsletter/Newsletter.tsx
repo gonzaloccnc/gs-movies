@@ -12,9 +12,9 @@ const Newsletter: React.FC = () => {
           <input
             type='email'
             placeholder='Type your email here*'
-            className='outline-none border-4 border-red-600 bg-transparent px-4 py-2 w-1/2'
+            className='outline-none border-[1px] border-white bg-transparent px-4 py-2 w-1/2'
           />
-          <button type='button' className='text-red-600 border-2 border-red-600 px-6 uppercase'>
+          <button type='button' className='text-red-600 border-[3px] border-red-600 px-6 uppercase'>
             Subscribe
           </button>
         </div>

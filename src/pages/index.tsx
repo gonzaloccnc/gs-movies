@@ -1,6 +1,6 @@
 import { ShortAbout } from '@/components/home/about/ShortAbout'
 import { Banner } from '@/components/home/banner/Banner'
-import { Newsletter } from '@/components/home/newsletter/Newsletter'
+import { Newsletter } from '@/components/newsletter/Newsletter'
 import { NextReleases } from '@/components/home/releases/NextReleases'
 import { ReleasesWrap } from '@/components/home/releases/ReleasesWrap'
 import { API_URL, type MoviesJSON } from '@/utils/API'
