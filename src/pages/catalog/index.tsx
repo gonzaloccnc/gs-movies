@@ -57,7 +57,7 @@ const CatalogPage: FC<CatalogProps> = ({ movies }) => {
       <Head>
         <title>GS - Movies: Catalog</title>
       </Head>
-      <section className='w-full h-screen'>
+      <section className='w-full desktop:h-screen'>
         <Introducing
           label='Catalog'
           title='Our work'
@@ -71,7 +71,10 @@ const CatalogPage: FC<CatalogProps> = ({ movies }) => {
         </Introducing>
       </section>
 
-      <section className='grid grid-cols-4 gap-x-8 gap-y-16'>
+      <section
+        className='grid desktop:grid-cols-4 gap-x-8 desktop:gap-y-16 desktop:px-0
+        mobile:grid-cols-1 mobile:px-5 mobile:gap-y-8'
+      >
         {
           moviesPersist.map((x, i) => (
             <CardMovie

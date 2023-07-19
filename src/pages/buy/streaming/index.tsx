@@ -1,13 +1,15 @@
-import { type FC } from 'react'
+import { type FC, useState } from 'react'
 import Head from 'next/head'
 import { PlayButton } from '@/components/buttons/PlayButton'
 import { BsInfoLg, BsPlayCircle, BsShareFill } from 'react-icons/bs'
 import { type GetServerSideProps } from 'next'
 import { axiosServer } from '@/utils/axios'
-import { API_URL, type MoviesJSON } from '@/utils/API'
+import { API_URL, type MovieType, type MoviesJSON } from '@/utils/API'
 import { CardTopRated } from '@/components/cards/CardTopRated'
 import { Introducing } from '@/components/Introducing'
 import { LoremText } from '../../../utils/Font'
+import { Modal } from '@/components/modals/Modal'
+import { ContentModalReleases } from '@/components/home/releases/ContentModalReleases'
 
 interface StreamingProps {
   data: MoviesJSON
@@ -15,13 +17,25 @@ interface StreamingProps {
 
 const StreamingPage: FC<StreamingProps> = ({ data }) => {
   const topRated = [...data.results].slice(0, 9)
+  const [modal, setModal] = useState<boolean>(false)
+  const [defaultMovie, setDefault] = useState<MovieType | null>(null)
+
+  const setOpenDefault = (): void => {
+    setDefault(null)
+    setModal(true)
+  }
+
+  const handleChangeDefault = (movie: MovieType): void => {
+    setDefault(movie)
+    setModal(true)
+  }
 
   return (
     <>
       <Head>
         <title>GS - Movies: Streaming</title>
       </Head>
-      <section className='w-full h-screen relative'>
+      <section className='w-full desktop:h-screen relative'>
         <Introducing
           label='GS Originals'
           title='See our original content online'
@@ -30,15 +44,20 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
         </Introducing>
       </section>
 
-      <section className='w-full h-[90vh] mt-20 bg-banner'>
+      <section className='w-full desktop:h-[90vh] desktop:mt-20 bg-banner mobile:h-[60vh]'>
         <div className='w-full h-3/4 flex flex-col justify-center items-center'>
-          <h1 className='text-center text-7xl mb-8'>GS Originals</h1>
-          <PlayButton labelButton='Preview' fn={() => { }}>
-            <BsPlayCircle fontSize={40} />
+          <h1 className='text-center dekstop:text-7xl mb-8 mobile:text-5xl'>
+            GS Originals
+          </h1>
+          <PlayButton labelButton='Preview' fn={setOpenDefault}>
+            <BsPlayCircle className='desktop:text-4xl mobile:text-3xl' />
           </PlayButton>
         </div>
 
-        <div className='w-full h-[25%] flex items-center justify-between px-10'>
+        <div
+          className='w-full h-[25%] desktop:flex items-center justify-between px-10
+          mobile:hidden'
+        >
           <div>
             <input
               type='search'
@@ -66,7 +85,7 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
         </div>
       </section>
 
-      <section className='w-full grid grid-cols-3'>
+      <section className='w-full desktop:grid desktop:grid-cols-3 mobile:grid-cols-1'>
         {
           topRated.map(x => (
             <CardTopRated
@@ -74,10 +93,23 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
               src={API_URL.IMAGES_W + x.backdrop_path}
               title={x.title}
               homepage={x.homepage}
+              handle={() => { handleChangeDefault(x) }}
             />
           ))
         }
       </section>
+
+      {
+        modal
+          ? <Modal>
+            <ContentModalReleases
+              movies={data.results}
+              closeModal={() => { setModal(false) }}
+              defaultMovie={defaultMovie ?? data.results[0]}
+            />
+          </Modal>
+          : null
+      }
     </>
   )
 }

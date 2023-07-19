@@ -14,6 +14,7 @@ module.exports = {
         gs_dark: '#0f0f0f',
         gs_gray: '#a0a0a0',
         gs_black: 'rgba(0, 0, 0, 0.8)',
+        gs_burger: '#262424',
         top: 'rgba(0,0,0,0.6)'
       },
       transitionTimingFunction: {
@@ -39,6 +40,16 @@ module.exports = {
       },
       animation: {
         line: 'line 1s ease-in-out 1s forwards'
+      },
+      height: {
+        extremes: '15%',
+        chat: '70%'
+      },
+      screens: {
+        mobile: '320px',
+        tablet: '720px',
+        desktop: '1024px',
+        'desktop-md': '1440px'
       }
     }
   },

@@ -26,7 +26,10 @@ const NextReleases: React.FC = () => {
 
   return (
     <>
-      <section className='w-full h-[600px] relative' id='next_releases'>
+      <section
+        id='next_releases'
+        className='w-full desktop:h-[600px] relative mobile:h-[40vh]'
+      >
         {
           upcoming !== null
             ? <Image
@@ -38,9 +41,11 @@ const NextReleases: React.FC = () => {
             : null
         }
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-          <h1 className='text-6xl text-shadow'>Next releases</h1>
+          <h1 className='desktop:text-6xl text-shadow mobile:text-3xl'>
+            Next releases
+          </h1>
           <PlayButton labelButton='Play video' fn={handleOpenWithDefaultVideo}>
-            <BsPlayCircle fontSize={40} />
+            <BsPlayCircle className='destkop:text-4xl mobile:text-3xl' />
           </PlayButton>
         </div>
       </section>

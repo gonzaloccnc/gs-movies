@@ -16,6 +16,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         }
         body {
           color: #ffffff;
+          background: rgb(15,15,15);
+        }
+
+        h2,
+        h3,
+        h4,
+        h5,
+        p,
+        span,
+        button,
+        ul,
+        ol,
+        li {
+          font-family: ${poppins.style.fontFamily};
         }
       `}</style>
       <Header />

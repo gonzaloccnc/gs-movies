@@ -12,7 +12,7 @@ const PlayButton: FC<PlayProps> = ({ children, fn, labelButton }) => {
       {children}
       <button
         type='button'
-        className='underline underline-offset-8 text-xl text-shadow'
+        className='underline underline-offset-8 desktop:text-xl text-shadow mobile:text-lg'
         onClick={fn}
       >
         {labelButton}

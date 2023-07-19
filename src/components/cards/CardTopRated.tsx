@@ -8,11 +8,10 @@ interface TopRatedProps {
 }
 
 const CardTopRated: React.FC<TopRatedProps> = ({ src, title, handle, homepage }) => {
-  console.log(homepage)
   return (
     <div
       onClick={handle}
-      className='cursor-pointer h-[240px]'
+      className='cursor-pointer h-[240px] bg-cover'
       style={{ backgroundImage: `url(${src})` }}
     >
 

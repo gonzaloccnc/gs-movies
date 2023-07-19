@@ -45,7 +45,7 @@ const CardMovie: React.FC<CardProps> = ({ title, year, content, src, isLast, new
 
   return (
     <div
-      className='font-poppins cursor-pointer'
+      className='cursor-pointer'
       ref={isLast ? cardRef : null}
       onClick={() => { void router.push(`/release/${id}`) }}
     >

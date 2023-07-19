@@ -9,18 +9,22 @@ const ContactPage: FC = () => {
       <Head>
         <title>GS - Movies: Contacto</title>
       </Head>
-      <section className='w-full h-[80vh]'>
+      <section className='w-full desktop:h-[80vh]'>
         <Introducing
           label='Contact us'
           title='GS productions Offices'
-          content=''
+          content={LoremText}
         />
       </section>
-      <section className='flex pl-56 gap-5 font-poppins font-light cursor-default mb-20'>
-        <div className='w-1/2'>
-          <p className='w-4/5 leading-9'>{LoremText}</p>
+
+      <section
+        className='flex desktop:pl-56 desktop:px-0 gap-5 font-light cursor-default mb-20
+        desktop:flex-row mobile:flex-col mobile:px-5'
+      >
+        <div className='desktop:w-1/2 mobile:w-full'>
+          <p className='desktop:w-4/5 leading-9'>{LoremText}</p>
         </div>
-        <div className='w-1/4 flex flex-col gap-4'>
+        <div className='desktop:w-1/4 flex flex-col gap-4 '>
           <h3 className='text-gs_orange'>Office 01</h3>
           <ul className='flex flex-col gap-4'>
             <li>Av. Fray A.Alcalde 10.</li>
@@ -29,7 +33,7 @@ const ContactPage: FC = () => {
             <li>Tel: +52-1-33-12345678</li>
           </ul>
         </div>
-        <div className='w-1/4 flex flex-col gap-4'>
+        <div className='desktop:w-1/4 flex flex-col gap-4'>
           <h3 className='text-gs_orange'>Office 02</h3>
           <ul className='flex flex-col gap-4'>
             <li>Av. Fray A.Alcalde 10.</li>

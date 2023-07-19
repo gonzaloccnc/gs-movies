@@ -16,7 +16,7 @@ const AboutPage: React.FC<AboutProps> = ({ randoms }) => {
       <Head>
         <title>GS - Movies: About</title>
       </Head>
-      <section className='w-full h-screen'>
+      <section className='w-full desktop:h-screen'>
         <Introducing
           label='About'
           title='GS Productions'
@@ -25,12 +25,15 @@ const AboutPage: React.FC<AboutProps> = ({ randoms }) => {
       </section>
 
       <section className='mb-14'>
-        <div className='pl-56 font-poppins mb-16'>
+        <div className='desktop:pl-56 desktop:mb-16 mobile:px-5 mobile:mb-8'>
           <h3 className='text-base font-extralight mb-2'>The Team</h3>
-          <h1 className='text-5xl'>GS people</h1>
+          <h2 className='desktop:text-5xl mobile:text-2xl'>GS people</h2>
         </div>
 
-        <div className='grid grid-cols-3 gap-32 px-16'>
+        <div
+          className='grid desktop:grid-cols-3 mobile:grid-cols-1 desktop:gap-32 desktop:px-16
+          mobile:gap-12 mobile:px-8'
+        >
           {
             randoms.map(x => (
               <CardEmployee

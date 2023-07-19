@@ -24,9 +24,7 @@ const ContentModalReleases: React.FC<ContentModalProps> = ({ closeModal, movies,
 
   const getPlayVideo = async (id: number): Promise<void> => {
     setPlayMovie(null)
-
     const { data } = await axiosClient.get<MoviePlayJSON>(`${id}/videos`)
-
     setPlayMovie(data)
   }
 
@@ -36,10 +34,10 @@ const ContentModalReleases: React.FC<ContentModalProps> = ({ closeModal, movies,
 
   const filterMovie = movies.find(mv => mv.id === (playMovie?.id as number)) ?? null
   const trailer = playMovie?.results.find(x => x.type === 'Trailer') ?? null
+  const moviesFilter = movies.filter(x => x.id !== defaultMovie.id)
 
   useEffect(() => {
     void getPlayVideo(changeVideo)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changeVideo])
 
   return (
@@ -63,16 +61,14 @@ const ContentModalReleases: React.FC<ContentModalProps> = ({ closeModal, movies,
             className='cursor-pointer text-2xl'
           />
         </header>
-
         {
           (filterMovie != null && playMovie != null && trailer != null)
             ? <section className='flex gap-10 w-3/4 mx-auto'>
               <iframe
                 className='aspect-video'
                 height={320}
-                src={`https://youtube.com/embed/${trailer?.key}`}
+                src={`https://www.youtube-nocookie.com/embed/${trailer?.key}`}
                 title='YouTube video player'
-                frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                 allowFullScreen
               />
@@ -126,7 +122,7 @@ const ContentModalReleases: React.FC<ContentModalProps> = ({ closeModal, movies,
 
           <div className='w-[1000%] flex gap-5 h-full' ref={slider}>
             {
-              movies.map(mv => (
+              moviesFilter.map(mv => (
                 <PlayCardRelease
                   local={false}
                   key={mv.id}
