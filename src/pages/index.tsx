@@ -1,11 +1,11 @@
 import { ShortAbout } from '@/components/home/about/ShortAbout'
 import { Banner } from '@/components/home/banner/Banner'
-import { Newsletter } from '@/components/newsletter/Newsletter'
 import { NextReleases } from '@/components/home/releases/NextReleases'
 import { ReleasesWrap } from '@/components/home/releases/ReleasesWrap'
-import { API_URL, type MoviesJSON } from '@/utils/API'
+import { type MoviesJSON } from '@/utils/API'
 import Head from 'next/head'
-import React from 'react'
+import { axiosServer } from '@/utils/axios'
+import { type GetServerSideProps } from 'next'
 
 interface HomePageProps {
   data: MoviesJSON
@@ -24,23 +24,16 @@ const HomePage: React.FC<HomePageProps> = ({ data }) => {
       <ReleasesWrap releases={data.results} />
       <ShortAbout />
       <NextReleases />
-      <Newsletter />
     </>
   )
 }
 
-const getServerSideProps = async (): Promise<{ props: HomePageProps }> => {
-  const req = await fetch(API_URL.MOVIES + 'popular', {
-    headers: {
-      Authorization: 'Bearer ' + (process.env.TOKEN as string)
-    }
-  })
-
-  const json = await req.json() as MoviesJSON
+const getServerSideProps: GetServerSideProps<{ data: MoviesJSON }> = async () => {
+  const { data } = await axiosServer.get<MoviesJSON>('popular')
 
   return {
     props: {
-      data: json
+      data
     }
   }
 }

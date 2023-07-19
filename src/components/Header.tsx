@@ -13,7 +13,7 @@ const Header: React.FC = () => {
       <nav className={`${poppins.className} flex gap-10 font-extralight`}>
         <Link href='/' className='hover:text-orange-600'>Home</Link>
         <Link href='/buy/streaming' className='hover:text-orange-600'>Streaming/Buy</Link>
-        <Link href='/coming_soon' className='hover:text-orange-600'>Coming Soon</Link>
+        <Link href='/#next_releases' className='hover:text-orange-600' scroll={false}>Next releases</Link>
         <Link href='/catalog' className='hover:text-orange-600'>Catalog</Link>
         <Link href='/about' className='hover:text-orange-600'>About</Link>
         <Link href='/contact' className='hover:text-orange-600'>Contact</Link>

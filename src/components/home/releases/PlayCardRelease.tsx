@@ -7,16 +7,21 @@ interface PlayCardProps {
   src: string
   title: string
   handle?: MouseEventHandler
+  local: boolean
+  width?: string
 }
 
-const PlayCardRelease: FC<PlayCardProps> = ({ src, title, handle }) => {
+const PlayCardRelease: FC<PlayCardProps> = ({ src, title, handle, local, width }) => {
+  const source = local ? src : `${API_URL.IMAGES_W}${src}`
+  const widthLocal = width ?? 'w-[300px]'
+
   return (
-    <div onClick={handle} className='relative cursor-pointer'>
+    <div onClick={handle} className={`relative cursor-pointer ${widthLocal}`}>
       <Image
-        width={300}
-        height={220}
-        src={`${API_URL.IMAGES_W}${src}`}
+        fill
+        src={source}
         alt={title}
+        sizes='(max-width: 1200px) 300px'
       />
 
       <div

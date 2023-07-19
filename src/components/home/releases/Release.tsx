@@ -27,6 +27,7 @@ const Release: React.FC<ReleasesProps> = ({ title, image, overview, id }) => {
         src={API_URL.IMAGES_W + image}
         alt={title}
         priority
+        sizes='(max-width: 1200px) 100%'
       />
       <div
         className='w-full h-full absolute top-0 bg-gs_black flex

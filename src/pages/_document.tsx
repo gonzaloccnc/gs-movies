@@ -1,13 +1,12 @@
-import React from 'react'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 const Document: React.FC = () => {
   return (
-    <Html lang='en'>
+    <Html lang='en' className='scroll-smooth'>
       <Head />
       <body>
         <Main />
-        <main id='portal_root'></main>
+        <section id='portal_root'></section>
         <NextScript />
       </body>
     </Html>

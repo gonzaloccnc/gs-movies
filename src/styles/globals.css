@@ -3,10 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  img {
-    width: auto;
-    max-width: auto;
-    aspect-ratio: auto;
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }
 

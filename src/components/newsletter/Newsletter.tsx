@@ -1,9 +1,27 @@
-import React from 'react'
+import { useEffect, useRef } from 'react'
 
 const Newsletter: React.FC = () => {
+  const newsLetterRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (newsLetterRef !== null) {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          newsLetterRef.current?.classList.add('before:animate-line')
+        }
+      })
+
+      observer.observe(newsLetterRef.current as HTMLElement)
+    }
+  }, [])
+
   return (
     <section className='py-8 pl-56'>
-      <div className='pl-5 border-l border-white h-52 flex flex-col justify-between'>
+      <div
+        className='h-52 flex flex-col justify-between relative before:absolute
+                   before:content-[""] before:-left-10 before:w-[1px] before:bg-white'
+        ref={newsLetterRef}
+      >
         <div>
           <h1 className='font-poppins font-extralight'>GSL Newsletter</h1>
           <span className='text-7xl'>See first</span>

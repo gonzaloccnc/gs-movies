@@ -1,40 +1,40 @@
 import { type MovieType } from '@/utils/API'
 import Link from 'next/link'
-import React, { useRef, useState } from 'react'
+import { type FC } from 'react'
 import { Release } from './Release'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
+import { useSlider } from '@/hooks/useSlider'
 
 interface ReleasesWrapProps {
   releases: MovieType[]
 }
 
-const ReleasesWrap: React.FC<ReleasesWrapProps> = ({ releases }) => {
-  const [click, setClicks] = useState<number>(0)
+const ReleasesWrap: FC<ReleasesWrapProps> = ({ releases }) => {
   const onlyPreviews = [...releases].slice(0, 8)
-  const slider = useRef<HTMLDivElement>(null)
+  const { handleNextImage, handlePrevImage, slider, click } = useSlider<HTMLDivElement>()
 
-  const hadnleNextImage = (): void => {
-    setClicks(click + 1)
-    if (slider.current !== null) {
-      const sl = slider.current
-      const gap = getComputedStyle(sl).columnGap.replace('px', '')
-      const marginLeft = sl.firstElementChild?.clientWidth ?? 0
-      const sum = click + 1
-      sl.style.marginLeft = `-${(marginLeft + parseInt(gap)) * sum}px`
-    }
-  }
+  // const hadnleNextSlider = (): void => {
+  //   setClicks(click + 1)
+  //   if (slider.current !== null) {
+  //     const sl = slider.current
+  //     const gap = getComputedStyle(sl).columnGap.replace('px', '')
+  //     const marginLeft = sl.firstElementChild?.clientWidth ?? 0
+  //     const sum = click + 1
+  //     sl.style.marginLeft = `-${(marginLeft + parseInt(gap)) * sum}px`
+  //   }
+  // }
 
-  const handePrevImage = (): void => {
-    setClicks(click - 1)
-    console.log(click)
-    if (slider.current !== null) {
-      const sl = slider.current
-      const gap = getComputedStyle(sl).columnGap.replace('px', '')
-      const marginLeft = sl.firstElementChild?.clientWidth ?? 0
-      const rest = click - 1
-      sl.style.marginLeft = `-${(marginLeft + parseInt(gap)) * rest}px`
-    }
-  }
+  // const handePrevSlider = (): void => {
+  //   setClicks(click - 1)
+
+  //   if (slider.current !== null) {
+  //     const sl = slider.current
+  //     const gap = getComputedStyle(sl).columnGap.replace('px', '')
+  //     const marginLeft = sl.firstElementChild?.clientWidth ?? 0
+  //     const rest = click - 1
+  //     sl.style.marginLeft = `-${(marginLeft + parseInt(gap)) * rest}px`
+  //   }
+  // }
 
   return (
     <section>
@@ -50,12 +50,12 @@ const ReleasesWrap: React.FC<ReleasesWrapProps> = ({ releases }) => {
               fontSize={45}
               fill='#ffffff'
               className='absolute top-1/2 -translate-y-1/2 left-2 z-50 cursor-pointer'
-              onClick={handePrevImage}
+              onClick={handlePrevImage}
             />
             : null
         }
         <div
-          className='w-[200%] h-full flex gap-10 transition-all ease-slide duration-500'
+          className='w-[200%] h-full flex gap-10'
           ref={slider}
         >
           {
@@ -76,7 +76,7 @@ const ReleasesWrap: React.FC<ReleasesWrapProps> = ({ releases }) => {
               fontSize={45}
               fill='#ffffff'
               className='absolute top-1/2 -translate-y-1/2 right-2 z-50 cursor-pointer'
-              onClick={hadnleNextImage}
+              onClick={handleNextImage}
             />
             : null
         }
