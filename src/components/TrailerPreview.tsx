@@ -46,14 +46,14 @@ const TrailerPreview: React.FC<TrailerProps> = ({ movie, id, close }) => {
   return (
     <>
       <div
-        className='absolute top-5 right-5 cursor-pointer'
+        className='absolute right-5 top-5 cursor-pointer'
         onClick={close}
       >
         <AiOutlineClose className='text-2xl' />
       </div>
 
       <div
-        className='absolute top-5 left-5 cursor-pointer flex gap-2 items-center'
+        className='absolute left-5 top-5 flex cursor-pointer items-center gap-2'
         onClick={handleShare}
       >
         <TbShare3 className='text-2xl' />
@@ -63,21 +63,21 @@ const TrailerPreview: React.FC<TrailerProps> = ({ movie, id, close }) => {
       {
         (movie !== null && playMovie !== null && trailer !== null)
           ? <section
-            className='absolute dekstop:top-1/2 dekstop:left-1/2
-            dekstop:-translate-x-1/2 dekstop:-translate-y-1/2 desktop:flex dekstop:w-4/5
-            gap-8 max-h-80 mobile:mt-16 mobile:top-1/4 mobile:-translate-y-1/4'
+            className='absolute max-h-80 gap-8
+            mobile:top-1/4 mobile:mt-16 mobile:-translate-y-1/4 desktop:left-1/2
+            desktop:top-1/2 desktop:flex desktop:w-4/5 desktop:-translate-x-1/2 desktop:-translate-y-1/2'
           >
-            <div className='desktop:w-3/5 relative mobile:mb-5 desktop:mb-0'>
-              <div className='absolute h-full top-0 bottom-0 left-0 right-0 bg-gs_black
-                   place-content-center hidden transition-all duration-500'
+            <div className='relative mobile:mb-5 desktop:mb-0 desktop:w-3/5'>
+              <div className='absolute inset-0 hidden h-full place-content-center bg-gs_black transition-all
+                   duration-500'
                 ref={shareWrap}
               >
                 <AiOutlineClose
-                  className='text-2xl absolute top-2 right-2 cursor-pointer'
+                  className='absolute right-2 top-2 cursor-pointer text-2xl'
                   onClick={handleShareClose}
                 />
                 <h2 className='text-3xl font-light'>Share this video</h2>
-                <div className='flex items-center text-2xl justify-evenly mt-2'>
+                <div className='mt-2 flex items-center justify-evenly text-2xl'>
                   <AiFillFacebook className='cursor-pointer' />
                   <AiOutlineTwitter className='cursor-pointer' />
                   <FaPinterestP className='cursor-pointer' />
@@ -87,39 +87,43 @@ const TrailerPreview: React.FC<TrailerProps> = ({ movie, id, close }) => {
               </div>
               <iframe
                 style={{ width: '100%' }}
-                className='aspect-video max-h-80'
+                className='aspect-video tablet:h-[40vh] desktop:max-h-80'
                 src={`https://www.youtube-nocookie.com/embed/${trailer.key}`}
                 title='YouTube video player'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                 allowFullScreen
               />
             </div>
-            <div className='desktop:w-2/5 overflow-y-auto mobile:px-5 desktop:px-0'>
-              <h2 className='text-xl font-light mb-5'>{movie.title}</h2>
+            <div className='overflow-y-auto mobile:px-5 desktop:w-2/5 desktop:px-0'>
+              <h2 className='mb-5 text-xl font-light'>{movie.title}</h2>
               <p className='font-light'>{movie.overview}</p>
             </div>
           </section>
-          : <section className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex w-4/5 gap-8 max-h-80'>
+          : <section
+            className='absolute max-h-80 gap-8 mobile:left-1/2 mobile:top-1/4 mobile:mt-16
+              mobile:w-full mobile:-translate-x-1/2 mobile:-translate-y-1/4 desktop:top-1/2
+              desktop:flex desktop:w-4/5 desktop:-translate-y-1/2 desktop:justify-center'
+          >
             <Skeleton
               count={1}
-              className='aspect-video'
-              height={320}
+              className='aspect-video w-full tablet:h-[40vh] desktop:h-64'
               baseColor='#ebebeb'
               highlightColor='#fff000'
             />
-            <div className='w-2/5 overflow-y-auto flex flex-col gap-5'>
+            <div
+              className='mobile:mt-5 mobile:w-full desktop:mt-0 desktop:w-2/5 desktop:px-0'
+            >
               <Skeleton
                 count={1}
-                width={350}
-                height={30}
                 baseColor='#ebebeb'
                 highlightColor='#fff000'
+                className='h-8 mobile:w-full desktop:w-[350px]'
               />
               <Skeleton
                 count={6}
-                width={350}
                 baseColor='#ebebeb'
                 highlightColor='#fff000'
+                className='mobile:w-full desktop:w-[350px]'
               />
             </div>
           </section>

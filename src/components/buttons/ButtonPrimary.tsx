@@ -10,8 +10,8 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({ title, handle, ownClass }
   return (
     <button
       type='button'
-      className={`p-2 bg-gs_orange font-extralight text-sm hover:bg-gs_black
-      transition-colors duration-400 ${ownClass ?? ''}`}
+      className={`bg-gs_orange p-2 text-sm font-extralight transition-colors
+      duration-500 hover:bg-gs_black ${ownClass ?? ''}`}
       onClick={handle}
     >
       {title}

@@ -5,13 +5,13 @@ import { ReleasesWrap } from '@/components/home/releases/ReleasesWrap'
 import { type MoviesJSON } from '@/utils/API'
 import Head from 'next/head'
 import { axiosServer } from '@/utils/axios'
-import { type GetServerSideProps } from 'next'
+import { type NextPage, type GetServerSideProps } from 'next'
 
 interface HomePageProps {
   data: MoviesJSON
 }
 
-const HomePage: React.FC<HomePageProps> = ({ data }) => {
+const HomePage: NextPage<HomePageProps> = ({ data }) => {
   return (
     <>
       <Head>

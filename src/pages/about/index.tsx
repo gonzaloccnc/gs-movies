@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Introducing } from '@/components/Introducing'
 import { LoremText } from '@/utils/Font'
-import { type GetStaticProps } from 'next'
+import { type NextPage, type GetStaticProps } from 'next'
 import axios from 'axios'
 import { type RandomJSON, type UserRandom } from '@/types/randomUser'
 import { CardEmployee } from '@/components/cards/CardEmployee'
@@ -10,7 +10,7 @@ interface AboutProps {
   randoms: UserRandom[]
 }
 
-const AboutPage: React.FC<AboutProps> = ({ randoms }) => {
+const AboutPage: NextPage<AboutProps> = ({ randoms }) => {
   return (
     <>
       <Head>
@@ -25,14 +25,14 @@ const AboutPage: React.FC<AboutProps> = ({ randoms }) => {
       </section>
 
       <section className='mb-14'>
-        <div className='desktop:pl-56 desktop:mb-16 mobile:px-5 mobile:mb-8'>
-          <h3 className='text-base font-extralight mb-2'>The Team</h3>
-          <h2 className='desktop:text-5xl mobile:text-2xl'>GS people</h2>
+        <div className='mobile:mb-8 mobile:px-5 desktop:mb-16 desktop:pl-56'>
+          <h3 className='mb-2 text-base font-extralight'>The Team</h3>
+          <h2 className='mobile:text-2xl desktop:text-5xl'>GS people</h2>
         </div>
 
         <div
-          className='grid desktop:grid-cols-3 mobile:grid-cols-1 desktop:gap-32 desktop:px-16
-          mobile:gap-12 mobile:px-8'
+          className='grid mobile:grid-cols-1 mobile:gap-12 mobile:px-8 tablet:grid-cols-2
+          desktop:grid-cols-3 desktop:gap-32 desktop:px-16'
         >
           {
             randoms.map(x => (

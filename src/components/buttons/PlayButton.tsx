@@ -8,11 +8,11 @@ interface PlayProps {
 
 const PlayButton: FC<PlayProps> = ({ children, fn, labelButton }) => {
   return (
-    <div className='flex items-center gap-3 justify-center cursor-pointer'>
+    <div className='flex cursor-pointer items-center justify-center gap-3'>
       {children}
       <button
         type='button'
-        className='underline underline-offset-8 desktop:text-xl text-shadow mobile:text-lg'
+        className='text-shadow underline underline-offset-8 mobile:text-lg desktop:text-xl'
         onClick={fn}
       >
         {labelButton}

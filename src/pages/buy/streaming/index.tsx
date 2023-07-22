@@ -1,8 +1,8 @@
-import { type FC, useState } from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
 import { PlayButton } from '@/components/buttons/PlayButton'
 import { BsInfoLg, BsPlayCircle, BsShareFill } from 'react-icons/bs'
-import { type GetServerSideProps } from 'next'
+import { type NextPage, type GetServerSideProps } from 'next'
 import { axiosServer } from '@/utils/axios'
 import { API_URL, type MovieType, type MoviesJSON } from '@/utils/API'
 import { CardTopRated } from '@/components/cards/CardTopRated'
@@ -15,9 +15,9 @@ interface StreamingProps {
   data: MoviesJSON
 }
 
-const StreamingPage: FC<StreamingProps> = ({ data }) => {
+const StreamingPage: NextPage<StreamingProps> = ({ data }) => {
   const topRated = [...data.results].slice(0, 9)
-  const [modal, setModal] = useState<boolean>(false)
+  const [modal, setModal] = useState(false)
   const [defaultMovie, setDefault] = useState<MovieType | null>(null)
 
   const setOpenDefault = (): void => {
@@ -35,7 +35,7 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
       <Head>
         <title>GS - Movies: Streaming</title>
       </Head>
-      <section className='w-full desktop:h-screen relative'>
+      <section className='relative w-full desktop:h-screen'>
         <Introducing
           label='GS Originals'
           title='See our original content online'
@@ -44,25 +44,25 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
         </Introducing>
       </section>
 
-      <section className='w-full desktop:h-[90vh] desktop:mt-20 bg-banner mobile:h-[60vh]'>
-        <div className='w-full h-3/4 flex flex-col justify-center items-center'>
-          <h1 className='text-center dekstop:text-7xl mb-8 mobile:text-5xl'>
+      <section className='w-full bg-banner mobile:h-[60vh] desktop:mt-20 desktop:h-[90vh]'>
+        <div className='flex h-3/4 w-full flex-col items-center justify-center'>
+          <h1 className='dekstop:text-7xl mb-8 text-center mobile:text-5xl'>
             GS Originals
           </h1>
           <PlayButton labelButton='Preview' fn={setOpenDefault}>
-            <BsPlayCircle className='desktop:text-4xl mobile:text-3xl' />
+            <BsPlayCircle className='mobile:text-3xl desktop:text-4xl' />
           </PlayButton>
         </div>
 
         <div
-          className='w-full h-[25%] desktop:flex items-center justify-between px-10
-          mobile:hidden'
+          className='h-[25%] w-full items-center justify-between px-10 mobile:hidden
+          desktop:flex'
         >
           <div>
             <input
               type='search'
               placeholder='Search video'
-              className='bg-transparent border-b py-2 px-1 outline-none placeholder-white' />
+              className='border-b bg-transparent px-1 py-2 outline-none placeholder:text-white' />
           </div>
           <div className='flex'>
             <span className='border-r border-white px-3'>
@@ -76,7 +76,7 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
             <select
               name='categories'
               id='categories'
-              className='bg-transparent border-b py-2 px-1 outline-none'
+              className='border-b bg-transparent px-1 py-2 outline-none'
               defaultValue='categorias'
             >
               <option disabled value='categorias' hidden>Categorias</option>
@@ -85,7 +85,7 @@ const StreamingPage: FC<StreamingProps> = ({ data }) => {
         </div>
       </section>
 
-      <section className='w-full desktop:grid desktop:grid-cols-3 mobile:grid-cols-1'>
+      <section className='w-full mobile:grid-cols-1 desktop:grid desktop:grid-cols-3'>
         {
           topRated.map(x => (
             <CardTopRated

@@ -13,7 +13,7 @@ const Banner: React.FC<BannerProps> = ({ movieData }) => {
 
   return (
     <section
-      className='w-full desktop:h-screen bg-cover mobile:h-[65vh]'
+      className='w-full bg-cover bg-center mobile:h-[65vh] tablet:h-[40vh] desktop:h-screen'
       style={{ backgroundImage: `url(${srcImage})` }}
     >
       <Introducing

@@ -16,7 +16,7 @@ interface CardProps {
 
 const CardMovie: React.FC<CardProps> = ({ title, year, content, src, isLast, newLimit, id }) => {
   const formatYear = new Date(year)
-  const [imgSrc, setImgSrc] = useState<string>(src !== null ? API_URL.IMAGES_W + src : '/imageNotFound.png')
+  const [imgSrc, setImgSrc] = useState(src !== null ? API_URL.IMAGES_W + src : '/imageNotFound.png')
   const cardRef = useRef<HTMLDivElement | null>(null)
   const router = useRouter()
 
@@ -52,18 +52,18 @@ const CardMovie: React.FC<CardProps> = ({ title, year, content, src, isLast, new
       <Image
         width={100}
         height={100}
-        className='w-full hover:opacity-30 object-cover'
+        className='w-full object-cover hover:opacity-30'
         src={imgSrc}
         onError={() => { void handleError() }}
         alt={title}
       />
-      <h3 className='flex items-center gap-2 text-xs font-light my-3'>
+      <h3 className='my-3 flex items-center gap-2 text-xs font-light'>
         {title}
         <span>|</span>
         <span>{formatYear.getFullYear()}</span>
       </h3>
-      <p className='text-sm line-clamp-3 max-h-16 hover:line-clamp-none hover:max-h-72
-         transition-all ease-text'>
+      <p className='line-clamp-3 max-h-16 text-sm transition-all ease-text
+         hover:line-clamp-none hover:max-h-72'>
         {content.length === 0 ? 'Empty overview' : content}
       </p>
     </div>

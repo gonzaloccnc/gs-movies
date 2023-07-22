@@ -16,27 +16,27 @@ const Newsletter: React.FC = () => {
   }, [])
 
   return (
-    <section className='py-8 desktop:pl-56 mobile:px-4'>
+    <section className='py-8 mobile:px-4 desktop:pl-56'>
       <div
-        className='h-52 flex flex-col desktop:justify-between desktop:gap-y-0 relative
-        before:absolute before:content-[""] before:-left-10 before:w-[1px] before:bg-white
-        mobile:gap-y-5'
+        className='relative flex h-52 flex-col before:absolute before:-left-10
+        before:w-[1px] before:bg-white before:content-[""] mobile:gap-y-5
+        desktop:justify-between desktop:gap-y-0'
         ref={newsLetterRef}
       >
         <div>
-          <span className='desktop:text-base mobile:text-sm font-extralight'>GSL Newsletter</span>
-          <h1 className='desktop:text-7xl mobile:text-4xl'>See first</h1>
+          <span className='font-extralight mobile:text-sm tablet:text-base'>GSL Newsletter</span>
+          <h1 className='mobile:text-4xl tablet:text-7xl'>See first</h1>
         </div>
-        <div className='flex gap-5 mobile:flex-col desktop:flex-row'>
+        <div className='flex gap-5 mobile:flex-col tablet:flex-row'>
           <input
             type='email'
             placeholder='Type your email here*'
-            className='outline-none border-[1px] border-white bg-transparent px-4 py-2
-            desktop:w-1/2 mobile:w-full'
+            className='border-[1px] border-white bg-transparent px-4 py-2 outline-none
+            mobile:w-full tablet:w-1/2'
           />
           <button
             type='button'
-            className='text-red-600 border-[3px] border-red-600 desktop:px-6 uppercase'
+            className='border-[3px] border-red-600 uppercase text-red-600 tablet:px-6'
           >
             Subscribe
           </button>

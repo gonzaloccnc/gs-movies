@@ -11,12 +11,12 @@ const CardTopRated: React.FC<TopRatedProps> = ({ src, title, handle, homepage })
   return (
     <div
       onClick={handle}
-      className='cursor-pointer h-[240px] bg-cover'
+      className='h-[240px] cursor-pointer bg-cover'
       style={{ backgroundImage: `url(${src})` }}
     >
 
-      <div className='flex flex-col bg-top w-full h-full items-center justify-center'>
-        <p className='text-sm text-center'>{title}</p>
+      <div className='flex h-full w-full flex-col items-center justify-center bg-top'>
+        <p className='text-center text-sm'>{title}</p>
         <div className='flex items-center justify-center gap-2'>
           <AiOutlinePlayCircle className='text-3xl' />
           <a href={homepage} target='_blank'>

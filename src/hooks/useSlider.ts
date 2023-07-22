@@ -2,6 +2,7 @@ import { type RefObject, useRef, useState, useEffect } from 'react'
 
 interface ReturnTypes<T> {
   click: number
+  totalObjects: number
   handleNextImage: () => void
   handlePrevImage: () => void
   slider: RefObject<T>
@@ -9,13 +10,16 @@ interface ReturnTypes<T> {
 
 const useSlider = <T extends HTMLElement>(animations?: string): ReturnTypes<T> => {
   const slider = useRef<T>(null)
-  const [click, setClicks] = useState<number>(0)
+  const [totalObjects, setTotalObjects] = useState(0)
+  const [click, setClicks] = useState(0)
 
   useEffect(() => {
     if (slider.current != null) {
       slider.current.className += (animations ?? ' transition-all ease-slide duration-500')
+      const childWidth = slider.current.firstElementChild?.clientWidth ?? 0
+      const screenElements = Math.floor(slider.current.clientWidth / childWidth)
+      setTotalObjects(slider.current.childElementCount - screenElements)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleNextImage = (): void => {
@@ -43,6 +47,7 @@ const useSlider = <T extends HTMLElement>(animations?: string): ReturnTypes<T> =
 
   return {
     click,
+    totalObjects,
     handleNextImage,
     handlePrevImage,
     slider

@@ -19,7 +19,7 @@ const Release: React.FC<ReleasesProps> = ({ title, image, overview, id }) => {
 
   return (
     <div
-      className='w-[285px] h-full shrink-0 relative cursor-pointer'
+      className='relative h-full w-[285px] shrink-0 cursor-pointer'
       onClick={handleNavigate}
     >
       <Image
@@ -30,11 +30,11 @@ const Release: React.FC<ReleasesProps> = ({ title, image, overview, id }) => {
         sizes='(max-width: 1200px) 100%'
       />
       <div
-        className='w-full h-full absolute top-0 bg-gs_black flex
-        text-xs font-extralight opacity-0 hover:opacity-100 transition-all
-        duration-300'
+        className='absolute top-0 flex h-full w-full bg-gs_black
+        text-xs font-extralight opacity-0 transition-all duration-300
+        hover:opacity-100'
       >
-        <div className='px-3 absolute bottom-5'>
+        <div className='absolute bottom-5 px-3'>
           <h2 className='mb-3 font-bold'>{title}</h2>
           <p>{overview}</p>
         </div>

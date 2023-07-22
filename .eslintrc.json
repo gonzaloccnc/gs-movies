@@ -6,6 +6,7 @@
     },
     "extends": [
         "standard-with-typescript",
+        "plugin:tailwindcss/recommended",
         "plugin:react/recommended",
         "next/core-web-vitals"
     ],
@@ -23,6 +24,12 @@
             "error",
             "prefer-single"
         ],
-        "react-hooks/exhaustive-deps": "off"
+        "react-hooks/exhaustive-deps": "off",
+        "tailwindcss/no-custom-classname": [
+            "error"
+        ],
+        "tailwindcss/classnames-order": [
+            "error"
+        ]
     }
 }

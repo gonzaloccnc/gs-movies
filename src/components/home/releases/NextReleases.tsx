@@ -9,7 +9,7 @@ import { ContentModalReleases } from './ContentModalReleases'
 
 const NextReleases: React.FC = () => {
   const [upcoming, setUpcoming] = useState<MoviesJSON | null>(null)
-  const [openModal, setOpenModal] = useState<boolean>(false)
+  const [openModal, setOpenModal] = useState(false)
 
   const fetchUpcoming = async (): Promise<void> => {
     const { data } = await axiosClient.get<MoviesJSON>('upcoming')
@@ -28,7 +28,7 @@ const NextReleases: React.FC = () => {
     <>
       <section
         id='next_releases'
-        className='w-full desktop:h-[600px] relative mobile:h-[40vh]'
+        className='relative w-full mobile:h-[40vh] desktop:h-[600px]'
       >
         {
           upcoming !== null
@@ -40,8 +40,8 @@ const NextReleases: React.FC = () => {
             />
             : null
         }
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-          <h1 className='desktop:text-6xl text-shadow mobile:text-3xl'>
+        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+          <h1 className='text-shadow mobile:text-3xl desktop:text-6xl'>
             Next releases
           </h1>
           <PlayButton labelButton='Play video' fn={handleOpenWithDefaultVideo}>
@@ -55,7 +55,7 @@ const NextReleases: React.FC = () => {
             <ContentModalReleases
               closeModal={handleOpenWithDefaultVideo}
               defaultMovie={upcoming?.results[0] as MovieType}
-              movies={upcoming?.results as MovieType[]}
+              movies={upcoming?.results ?? null}
             />
           </Modal>)
           : null

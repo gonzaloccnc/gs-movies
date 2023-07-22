@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useRef, useState, type FC } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import { Introducing } from '@/components/Introducing'
 import { LoremText } from '@/utils/Font'
 import { ButtonPrimary } from '@/components/buttons/ButtonPrimary'
 import { useRouter } from 'next/router'
-import { type GetServerSideProps } from 'next'
+import { type NextPage, type GetServerSideProps } from 'next'
 import { axiosClient, axiosServer } from '@/utils/axios'
 import { CardMovie } from '@/components/cards/CardMovie'
-import { type MoviesJSON, type MovieType } from '../../utils/API'
+import { type MoviesJSON } from '../../utils/API'
 import debounce from 'just-debounce-it'
 import { BsFillArrowUpCircleFill } from 'react-icons/bs'
 
@@ -15,12 +15,12 @@ interface CatalogProps {
   movies: MoviesJSON
 }
 
-const CatalogPage: FC<CatalogProps> = ({ movies }) => {
+const CatalogPage: NextPage<CatalogProps> = ({ movies }) => {
   const router = useRouter()
-  const [moviesPersist, setMovies] = useState<MovieType[]>(movies.results)
-  const [page, setPage] = useState<number>(1)
-  const [scroll, setScroll] = useState<number>(0)
-  const clientHeight = useRef<number>(0)
+  const [moviesPersist, setMovies] = useState(movies.results)
+  const [page, setPage] = useState(1)
+  const [scroll, setScroll] = useState(0)
+  const clientHeight = useRef(0)
 
   const handleScroll = (): void => {
     setScroll(window.scrollY)
@@ -72,8 +72,8 @@ const CatalogPage: FC<CatalogProps> = ({ movies }) => {
       </section>
 
       <section
-        className='grid desktop:grid-cols-4 gap-x-8 desktop:gap-y-16 desktop:px-0
-        mobile:grid-cols-1 mobile:px-5 mobile:gap-y-8'
+        className='grid gap-x-8 mobile:grid-cols-1 mobile:gap-y-8 mobile:px-5
+        desktop:grid-cols-4 desktop:gap-y-16 desktop:px-0'
       >
         {
           moviesPersist.map((x, i) => (
@@ -92,7 +92,7 @@ const CatalogPage: FC<CatalogProps> = ({ movies }) => {
       </section>
       {
         scroll > clientHeight.current * 3
-          ? <div className='fixed bottom-5 left-5 z-50 bg-white rounded-full cursor-pointer'>
+          ? <div className='fixed bottom-5 left-5 z-50 cursor-pointer rounded-full bg-white'>
             <BsFillArrowUpCircleFill
               className='text-4xl text-gs_orange'
               onClick={handleToTop}
